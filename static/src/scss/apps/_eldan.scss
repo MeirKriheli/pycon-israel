@@ -77,15 +77,21 @@
   .fixNavInnerPage {
     top: 24px !important;
   }
+
   #banner {
     background-image: url( "../images/banner_pyconil_2018.png");
-    background-repeat: none;
+    background-repeat: no-repeat;
     width: 179px;
     height: 72px;
     right: 0px;
     margin: 8px;
     position: absolute;
     top: 0px;
+
+    html[dir=rtl] & {
+        right: auto;
+        left: 0;
+    }
 
   }
 
@@ -135,6 +141,11 @@
     animation-name: surfAni;
     animation-duration: 5s;
     animation-iteration-count: infinite;
+
+    html[dir=rtl] & {
+        margin-right: 15px;
+        margin-left: 0;
+    }
   }
   @keyframes surfAni {
       0% {

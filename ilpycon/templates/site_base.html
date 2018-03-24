@@ -22,7 +22,7 @@
 
 <div {% block extra_header_class %}class="headerInnerPage"{% endblock %}>
   {% block headerInnerPages %}<div id="logoInnerPage"></div>{% endblock %}
-    <div class="navPyconIL" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+    <div class="navPyconIL">
       <div class="navbar {% block navbar_class %}navbar-expand-lg navbar-eldan {% endblock %} {% block fixNavInnerPage %}fixNavInnerPage{% endblock %}">
           <div class="container">
           {% block topbar %}
@@ -57,7 +57,7 @@
 
 
 {% block body_base %}
-    <main class="container" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+    <main class="container">
         <div id="content-section" class="row">
             <div id="content-body" class="col-9">
                 {% block body %}
