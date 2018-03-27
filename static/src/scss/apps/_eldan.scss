@@ -3,19 +3,157 @@ body {
   color: #333333;
   background-color: white;
 }
-header {
-  height: 430px;
+
+
+#main-header {
   background-color: #deeaf8;
+  position: relative;
+
+  @include media-breakpoint-up(md) {
+    .home & {
+      height: 430px;
+      width: 100%;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        background-image: url( "../images/banner_pyconil_2018.png");
+        background-repeat: no-repeat;
+        width: 179px;
+        height: 72px;
+        top: 8px;
+        right: 8px;
+
+        html[dir=rtl] & {
+          left: 8px;
+          right: auto;
+        }
+
+      }
+    }
+  }
+
+  .navbar-topbar {
+    background-color: #1d76bd !important;
+    border-top: #e34f25 2px solid;
+
+    @include media-breakpoint-down(sm) {
+      .navbar-nav {
+        padding: $grid-gutter-width / 2;
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      .home & {
+        margin-top: 130px;
+        border-top: 0px none;
+        position: relative;
+
+        &::after {
+          content: ' ';
+          position: absolute;
+          background-image: url( "../images/surf.png");
+          background-repeat: no-repeat;
+          width: 57px;
+          height: 142px;
+          animation-name: surfAni;
+          animation-duration: 5s;
+          animation-iteration-count: infinite;
+          top: -60px;
+
+          html[dir=rtl] & {
+            margin-right: 15px;
+            margin-left: 0;
+          }
+        }
+      }
+    }
+
+    .nav-link {
+      padding-top: 5px;
+      padding-bottom: 0.375rem;
+    }
+
+    button, button:disabled {
+      background: none;
+      border: none;
+      color: white;
+      padding: 0px 10px 0px 10px !important;
+
+      @include media-breakpoint-up(md) {
+        color: $yellow;
+      }
+
+    }
+
+
+  }
+
 }
+
+@mixin cloud($delay, $x-pos, $y-pos) {
+  position: absolute;
+  background-image: url( "../images/clouds.png");
+  background-repeat: no-repeat;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-position: $x-pos $y-pos;
+  animation-name: cloudAni;
+  animation-duration: 14s;
+  animation-delay: $delay;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  display: block;
+
+}
+
+#header-extra {
+  display: none;
+  position: relative;
+
+  @include media-breakpoint-up(md) {
+    .home & {
+      @include cloud(0, 0, 170px);
+
+      &::before {
+        @include cloud(7s, -600px, 206px);
+        content: ' ';
+      }
+
+      &::after {
+        content: ' ';
+        background-image: url( "../images/city.png");
+        background-position: bottom;
+        background-repeat: repeat-x;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    }
+  }
+}
+
 footer {
-  background: url('../images/footer.jpg') no-repeat left center;
-  background-color: rgba(0, 0, 0, 0);
-  background-position-y: center;
-  background-size: auto auto;
+
+  background-image: none;
   background-color: #deeaf8;
-  background-size: unset;
-  background-position-y: 0px;
-  height: 300px;
+  height: 101px;
+
+  @include media-breakpoint-up(md) {
+    background: url('../images/footer.jpg') no-repeat left center;
+    background-color: rgba(0, 0, 0, 0);
+    background-position-y: center;
+    background-size: auto auto;
+    background-color: #deeaf8;
+    background-size: unset;
+    background-position-y: 0px;
+    height: 300px;
+  }
+
   div {
     width: 100%;
     max-width: 100%;
@@ -24,129 +162,63 @@ footer {
     margin: 0px;
   }
 }
-.footerLogo {
-  background-image: url( "../images/logo_pyconil_2018.png");
-  background-position-y: 40px;
-  background-repeat: no-repeat;
-  width: 142px;
-  height: 200px;
-  background-position-x: right 20px;
+
+.footer-logo {
+
+  display: none;
+
+  @include media-breakpoint-up(md) {
+    display: block;
+    background-image: url( "../images/logo_pyconil_2018.png");
+    background-position-y: 40px;
+    background-repeat: no-repeat;
+    width: 142px;
+    height: 200px;
+    background-position-x: right 20px;
+  }
+
 }
+
 .jumbotron {
   margin: 20px;
   margin-top: 50px !important;
 }
 
-#city {
-  background-image: url( "../images/city.png");
-  background-position: bottom;
-  background-repeat: repeat-x;
-  height: 430px;
-  width: 100%;
-  position: absolute;
-  top: 0px;
-}
-
-
 #logo {
-  background-image: url( "../images/logo_pyconil_2018.png");
-  background-repeat: no-repeat;
-  width: 142px;
-  height: 160px;
-  float: left;
-  margin: 8px;
-  position: absolute;
-  top: 0px;
-}
 
-.headerInnerPage {
-  background-color: #deeaf8;
-  background-image: url( "../images/innerpage_bg.gif");
-  background-position: bottom;
-  background-repeat: repeat-x;
-  height: 194px;
-}
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
 
-#logoInnerPage {
-  background-image: url( "../images/inner_page_header.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 154px;
-}
-.fixNavInnerPage {
-  top: 24px !important;
-}
+  a {
+    background-image: url( "../images/inner_page_header.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 126px;
+    width: 588px;
+    margin: 0 auto;
+    display: block;
+    overflow: hidden;
+    line-height: 1000px;  // hide text
+    max-width: 100%;
+    background-size: cover;
 
-#banner {
-  background-image: url( "../images/banner_pyconil_2018.png");
-  background-repeat: no-repeat;
-  width: 179px;
-  height: 72px;
-  right: 0px;
-  margin: 8px;
-  position: absolute;
-  top: 0px;
+    @include media-breakpoint-up(md) {
+      height: 154px;
 
-  html[dir=rtl] & {
-    right: auto;
-    left: 0;
-  }
-
-}
-
-.navPyconIL {
-  top: 123px;
-  z-index: 2;
-  position: absolute;
-  width: 100%;
-  padding-left: 40px;
-  padding-right: 40px;
-}
-
-#nav {
-  position: absolute;
-  top: 298px;
-  width: 100%;
-  background-color: #1d76bd;
-  height: 35px;
-}
-.navbar {
-  top: 164px;
-  background: none !important;
-}
-
-#nav div{
-  text-align: center;
-  color: white;
-}
-
-.navbar-eldan {
-  .nav-link:hover {
-    color: white;
-  }
-  .nav-link:active {
-    color: orange;
+      .home & {
+        background-image: url( "../images/logo_pyconil_2018.png");
+        background-repeat: no-repeat;
+        width: 142px;
+        height: 160px;
+        margin: 8px;
+      }
+    }
   }
 }
 
-#surf {
-  position: absolute;
-  background-image: url( "../images/animated_object_1.png");
-  background-repeat: no-repeat;
-  width: 57px;
-  height: 142px;
-  margin-left: 15px;
-  margin-top: 240px;
-  animation-name: surfAni;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-
-  html[dir=rtl] & {
-    margin-right: 15px;
-    margin-left: 0;
-  }
-}
 @keyframes surfAni {
   0% {
     transform: rotate(0deg);
@@ -161,24 +233,6 @@ footer {
     transform: rotate(0deg);
     margin-left: 15px;
   }
-}
-.cloud {
-  position: absolute;
-  background-image: url( "../images/animated_object_2.png");
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
-  background-position-y: 170px;
-  animation-name: cloudAni;
-  animation-duration: 14s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-
-}
-.cloud2 {
-  animation-delay: 7s;
-  background-position-x: -600px;
-  background-position-y: 206px;
 }
 @keyframes cloudAni {
   0% {
@@ -196,69 +250,4 @@ h1 {
 
 h2 {
   color: #e34f25;
-}
-.navbar-eldan {
-  .nav-link  {
-    color: #deeaf8;
-    :hover {
-      color: red;
-    }
-  }
-
-  button, button:disabled {
-    background: none;
-    border: none;
-    color: orange;
-    font-size: small;
-    padding: 0px 10px 0px 10px !important;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  #banner, #animation, #logo, #surf, #cloud, #cloud2  {
-    display: none;
-  }
-  #logoMobile {
-    background-image: url( "../images/inner_page_header.png");
-    background-repeat: none;
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 126px;
-  }
-  #logoInnerPage {
-    background-image: url( "../images/inner_page_header.png");
-    background-repeat: none;
-    background-repeat: no-repeat;
-  }
-  .footerLogo {
-    display: none;
-  }
-  footer {
-    background-image: none;
-    background-color: #deeaf8;
-    height: 101px;
-  }
-
-}
-@media only screen and (max-width: 978px) {
-  .fixNavInnerPage {
-    top: 33px !important;
-  }
-  .navPyconIL {
-    .navbar {
-      top: 174px;
-
-    }
-    .navbar-nav {
-      background-color: #1d76bd;
-      padding: 20px;
-    }
-    button, button:disabled {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 20px;
-      padding: 0px 10px 0px 10px !important;
-    }
-  }
 }

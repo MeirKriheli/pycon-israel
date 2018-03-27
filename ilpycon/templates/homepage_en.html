@@ -1,9 +1,11 @@
-{% extends "homepage_base.html" %}
+{% extends "site_base.html" %}
 
 {% load i18n %}
 {% load staticfiles %}
 
 {% block head_title %}Pycon Israel 2018{% endblock %}
+
+{% block body_class %}home{% endblock %}
 
 {% block body_base %}
 <main>
@@ -49,7 +51,7 @@
                 <div class="col">
 		  <h3 class="text-center">Open Source</h3>
 		  <p class="desc">
-		    <img src="{% static "images/hamakor.png" %}" alt="Hamakor logo" 
+		    <img src="{% static "images/hamakor.png" %}" alt="Hamakor logo"
 			 style="width: 15ex; float: right; margin-left: 1ex;" />
 		    Python itself, and most of its ecosystem, have always been Open Source software.
 		    PyCon Israel is organized under the auspices of <a href="https://www.hamakor.org.il">Hamakor</a>,

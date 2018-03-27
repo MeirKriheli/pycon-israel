@@ -19,39 +19,38 @@
 {% block body_extra_attributes %}{% endblock %}
 
 {% block topbar_base %}
+  <header id="main-header">
+    <div id="header-extra"></div>
+    <h1 id="logo"><a href="{% url 'home' %}">{% trans "PyCon Israel 2018" %}</a></h1>
 
-<div {% block extra_header_class %}class="headerInnerPage"{% endblock %}>
-  {% block headerInnerPages %}<div id="logoInnerPage"></div>{% endblock %}
-    <div class="navPyconIL">
-      <div class="navbar {% block navbar_class %}navbar-expand-lg navbar-eldan {% endblock %} {% block fixNavInnerPage %}fixNavInnerPage{% endblock %}">
-          <div class="container">
-          {% block topbar %}
+    <nav class="navbar navbar-expand-lg navbar-topbar navbar-dark">
+      <div class="container">
+        {% block topbar %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+          <span class="fa fa-bars"></span>
+        </button>
 
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-                  <span class="fa fa-bars"></span>
-              </button>
-
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  {% block nav %}
-                      <ul class="navbar-nav {% if LANGUAGE_BIDI %}ml-auto{% else %}mr-auto{% endif %}">
-                          {% block nav_items %}
-                          {% sitetree_menu from "main" include "trunk" %}
-                          {% if request.user.is_authenticated %}
-                              <li class="navbar-item">
-                                  <a class="nav-link" href="{% url "dashboard" %}"><i class="fas fa-tasks"></i> {% trans "Dashboard" %}</a>
-                              </li>
-                          {% endif %}
-                          {% endblock %}
-                      </ul>
-                  {% endblock %}
-                  {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
-                  {% block language_bar %}{% include "_language_bar.html" %}{% endblock %}
-              </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          {% block nav %}
+          <ul class="navbar-nav {% if LANGUAGE_BIDI %}ml-auto{% else %}mr-auto{% endif %}">
+            {% block nav_items %}
+            {% sitetree_menu from "main" include "trunk" %}
+            {% if request.user.is_authenticated %}
+            <li class="navbar-item">
+              <a class="nav-link" href="{% url "dashboard" %}"><i class="fas fa-tasks"></i> {% trans "Dashboard" %}</a>
+            </li>
+            {% endif %}
+            {% endblock %}
+          </ul>
           {% endblock %}
-          </div>
+          {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
+          {% block language_bar %}{% include "_language_bar.html" %}{% endblock %}
+        </div>
+        {% endblock topbar %}
       </div>
-    </div>
-</div>
+    </nav>
+
+  </header>
 
 {% endblock %}
 
@@ -59,11 +58,11 @@
 {% block body_base %}
     <main class="container">
         <div id="content-section" class="row">
-            <div id="content-body" class="col-9">
+            <div id="content-body" class="col-md-9">
                 {% block body %}
                 {% endblock %}
             </div>
-            <div class="col-3">
+            <div class="col-md-3">
                 {% block sidebar %}
                     {% include "_default_sidebar.html" %}
                 {% endblock %}
