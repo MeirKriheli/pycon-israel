@@ -79,11 +79,6 @@ body {
       border: none;
       color: white;
       padding: 0px 10px 0px 10px !important;
-
-      @include media-breakpoint-up(md) {
-        color: $yellow;
-      }
-
     }
 
 
