@@ -66,6 +66,14 @@ body {
             margin-left: 0;
           }
         }
+
+        .nav-item {
+          z-index: 2;
+        }
+
+        .nav-link {
+          text-shadow: 1px 1px 2px #1d76bd;
+        }
       }
     }
 
