@@ -206,7 +206,11 @@ footer {
     overflow: hidden;
     line-height: 1000px;  // hide text
     max-width: 100%;
-    background-size: cover;
+    background-size: contain;
+
+    @include media-breakpoint-down(xs) {
+      background-size: cover;
+    }
 
     @include media-breakpoint-up(md) {
       height: 154px;
